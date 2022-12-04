@@ -66,7 +66,7 @@ describe('Given I am connected as an Admin', () => {
       const dashboard = new Dashboard({
         document,
         onNavigate,
-        store: null,
+        store: mockStore,
         bills: bills,
         localStorage: window.localStorage,
       });
@@ -124,7 +124,7 @@ describe('Given I am connected as an Admin', () => {
       const dashboard = new Dashboard({
         document,
         onNavigate,
-        store: null,
+        store: mockStore,
         bills: bills,
         localStorage: window.localStorage,
       });
@@ -162,7 +162,7 @@ describe('Given I am connected as an Admin', () => {
       const dashboard = new Dashboard({
         document,
         onNavigate,
-        store: null,
+        store: mockStore,
         bills: bills,
         localStorage: window.localStorage,
       });
@@ -195,7 +195,7 @@ describe('Given I am connected as an Admin', () => {
 
 describe('Given I am connected as Admin, and I am on Dashboard page, and I clicked on a pending bill', () => {
   describe('When I click on accept button', () => {
-    test('I should be sent on Dashboard with big billed icon instead of form', () => {
+    test('Then I should be sent on Dashboard with big billed icon instead of form', () => {
       Object.defineProperty(window, 'localStorage', {
         value: localStorageMock,
       });
@@ -210,7 +210,7 @@ describe('Given I am connected as Admin, and I am on Dashboard page, and I click
       const onNavigate = pathname => {
         document.body.innerHTML = ROUTES({ pathname });
       };
-      const store = null;
+      const store = mockStore;
       const dashboard = new Dashboard({
         document,
         onNavigate,
@@ -231,7 +231,7 @@ describe('Given I am connected as Admin, and I am on Dashboard page, and I click
     });
   });
   describe('When I click on refuse button', () => {
-    test('I should be sent on Dashboard with big billed icon instead of form', () => {
+    test('Then I should be sent on Dashboard with big billed icon instead of form', () => {
       Object.defineProperty(window, 'localStorage', {
         value: localStorageMock,
       });
@@ -246,7 +246,7 @@ describe('Given I am connected as Admin, and I am on Dashboard page, and I click
       const onNavigate = pathname => {
         document.body.innerHTML = ROUTES({ pathname });
       };
-      const store = null;
+      const store = mockStore;
       const dashboard = new Dashboard({
         document,
         onNavigate,
@@ -269,7 +269,7 @@ describe('Given I am connected as Admin, and I am on Dashboard page, and I click
 
 describe('Given I am connected as Admin and I am on Dashboard page and I clicked on a bill', () => {
   describe('When I click on the icon eye', () => {
-    test('A modal should open', () => {
+    test('Then A modal should open', () => {
       Object.defineProperty(window, 'localStorage', {
         value: localStorageMock,
       });
@@ -283,7 +283,7 @@ describe('Given I am connected as Admin and I am on Dashboard page and I clicked
       const onNavigate = pathname => {
         document.body.innerHTML = ROUTES({ pathname });
       };
-      const store = null;
+      const store = mockStore;
       const dashboard = new Dashboard({
         document,
         onNavigate,
@@ -307,7 +307,7 @@ describe('Given I am connected as Admin and I am on Dashboard page and I clicked
 // test d'intégration GET
 describe('Given I am a user connected as Admin', () => {
   describe('When I navigate to Dashboard', () => {
-    test('fetches bills from mock API GET', async () => {
+    test('Then the app fetches bills from mock API GET', async () => {
       localStorage.setItem(
         'user',
         JSON.stringify({ type: 'Admin', email: 'a@a' })
@@ -342,7 +342,7 @@ describe('Given I am a user connected as Admin', () => {
         document.body.appendChild(root);
         router();
       });
-      test('fetches bills from an API and fails with 404 message error', async () => {
+      test('Then the app fetches bills from an API and fails with 404 message error', async () => {
         mockStore.bills.mockImplementationOnce(() => {
           return {
             list: () => {
@@ -356,7 +356,7 @@ describe('Given I am a user connected as Admin', () => {
         expect(message).toBeTruthy();
       });
 
-      test('fetches messages from an API and fails with 500 message error', async () => {
+      test('Then the app fetches messages from an API and fails with 500 message error', async () => {
         mockStore.bills.mockImplementationOnce(() => {
           return {
             list: () => {

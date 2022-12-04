@@ -1,9 +1,8 @@
-import VerticalLayout from './VerticalLayout.js'
+import VerticalLayout from './VerticalLayout.js';
 
 export default () => {
-
-  return (`
-    <div class='layout'>
+  return `
+    <div class='layout' data-testid="new-bill">
       ${VerticalLayout(120)}
       <div class='content'>
         <div class='content-header'>
@@ -70,5 +69,5 @@ export default () => {
         </div>
       </div>
     </div>
-  `)
-}
+  `;
+};

@@ -20,12 +20,13 @@ export default class NewBill {
   handleChangeFile = e => {
     e.preventDefault();
     const fileInput = this.document.querySelector(`input[data-testid="file"]`);
-    const {
-      files: [file],
-    } = fileInput;
-    const filePath = e.target.value.split(/\\/g);
-    const fileName = filePath[filePath.length - 1];
+    if (fileInput === null) return;
+    const file = fileInput.files[0];
+    if (file === undefined) return;
+    const fileName = file.name;
+    console.log(fileName);
     let fileExtension = fileName.split('.').pop()?.toLowerCase();
+    console.log(fileExtension);
     if (
       !fileExtension ||
       (fileExtension !== 'jpg' &&
@@ -33,7 +34,7 @@ export default class NewBill {
         fileExtension !== 'jpeg')
     ) {
       alert('Please choose an image file (.jpg, .png or .jpeg format)');
-      fileInput.value = null;
+      fileInput.value = '';
       return;
     }
 
