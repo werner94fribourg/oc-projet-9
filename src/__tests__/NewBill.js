@@ -46,7 +46,7 @@ describe('Given I am connected as an employee', () => {
         const fileInput = screen.getByTestId('file');
         await waitFor(() => userEvent.upload(fileInput, fileToUpload));
         const file = fileInput.files[0];
-        expect(Object.keys(file).length).toBeFalsy();
+        expect(file).toBeUndefined();
       });
       test("Then it throws an alert message if the file hasn't any format", async () => {
         const fileToUpload = new File(['Hello'], 'chucknorris', {
@@ -56,7 +56,7 @@ describe('Given I am connected as an employee', () => {
         const fileInput = screen.getByTestId('file');
         await waitFor(() => userEvent.upload(fileInput, fileToUpload));
         const file = fileInput.files[0];
-        expect(Object.keys(file).length).toBeFalsy();
+        expect(file).toBeUndefined();
       });
       test('Then the file is successfully loaded if the format of the file is correct', async () => {
         const fileToUpload = new File(['(⌐□_□)'], 'chucknorris.png', {
@@ -67,6 +67,7 @@ describe('Given I am connected as an employee', () => {
         const fileInput = screen.getByTestId('file');
 
         await waitFor(() => userEvent.upload(fileInput, fileToUpload));
+
         const file = fileInput.files[0];
         expect(file).toBe(fileToUpload);
       });

@@ -35,6 +35,7 @@ export default class NewBill {
     ) {
       alert('Please choose an image file (.jpg, .png or .jpeg format)');
       fileInput.value = '';
+      fileInput.files = [];
       return;
     }
 
